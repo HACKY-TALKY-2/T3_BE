@@ -36,3 +36,29 @@ export const excuseHandler = async (req: Request, res: Response) => {
     });
   }
 };
+
+export type Language = "한국어" | "English";
+export type Gender = "남성" | "여성";
+export type Age = "청년" | "중년" | "노년";
+
+interface VoiceBody {
+  language?: string;
+  gender: Gender;
+  age: Age;
+  text: string;
+}
+
+export const excuseVoiceHandler = async (req: Request, res: Response) => {
+  try {
+    const body: VoiceBody = req.body;
+    // TODO: fill the function.
+    return res.status(200).json({
+      url: "https://t3-excuse-hackathon.s3.ap-northeast-2.amazonaws.com/audios/sample.mp3",
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      error: "Internal Server Error",
+    });
+  }
+};
