@@ -8,6 +8,9 @@ services:
       - HOST=${HOST:?}
       - MONGO_CONNECTION_URI=mongodb://db:27017/t3
       - OPENAI_API_KEY=${OPENAI_API_KEY:?}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:?}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:?}
+      - AWS_S3_BUCKET=${AWS_S3_BUCKET:?}
     depends_on:
       - db
   db:

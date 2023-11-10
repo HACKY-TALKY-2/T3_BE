@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { getPrompt, PromptBody } from "@/modules/prompt.js";
-import { getReply } from "@/modules/openai.js";
+import { getReply, getVoiceBuffer } from "@/modules/openai.js";
 import { ExcuseHistoryModel } from "@/db/model.js";
+import { uploadS3 } from "@/modules/aws.js";
+import getRandomHex from "@/utils/randomHex.js";
 
 export const excuseHandler = async (req: Request, res: Response) => {
   try {
@@ -50,10 +52,30 @@ interface VoiceBody {
 
 export const excuseVoiceHandler = async (req: Request, res: Response) => {
   try {
-    const body: VoiceBody = req.body;
-    // TODO: fill the function.
+    const { language, gender, age, text } = req.body as VoiceBody;
+
+    // Whisper API를 사용해 텍스트를 음성으로 변환합니다.
+    const buffer = await getVoiceBuffer(text);
+    if (buffer === null) {
+      console.error("Failed to get voice buffer from openai");
+      return res.status(500).json({
+        error: "Internal Server Error",
+      });
+    }
+
+    // 버퍼를 S3에 업로드합니다.
+    const filename = `${Date.now()}_${getRandomHex()}.mp3`;
+    const path = `audios/${filename}`;
+    const uploaded = await uploadS3(path, buffer);
+    if (!uploaded) {
+      console.error("Failed to upload buffer to s3");
+      return res.status(500).json({
+        error: "Internal Server Error",
+      });
+    }
+
     return res.status(200).json({
-      url: "https://t3-excuse-hackathon.s3.ap-northeast-2.amazonaws.com/audios/sample.mp3",
+      url: `https://${process.env.AWS_S3_BUCKET}.s3.ap-northeast-2.amazonaws.com/${path}`,
     });
   } catch (err) {
     console.error(err);

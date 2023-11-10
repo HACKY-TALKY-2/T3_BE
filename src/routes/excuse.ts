@@ -15,10 +15,6 @@ router.post(
   excuseHandler,
 );
 
-// language?: string;
-// gender: Gender;
-// age: Age;
-
 router.post(
   "/voice",
   body("language").optional().isString().isIn(["한국어", "영어", "일본어"]),
