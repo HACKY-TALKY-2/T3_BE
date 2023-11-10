@@ -37,9 +37,9 @@ export const excuseHandler = async (req: Request, res: Response) => {
   }
 };
 
-export type Language = "한국어" | "English";
+export type Language = "한국어" | "영어" | "일본어";
 export type Gender = "남성" | "여성";
-export type Age = "청년" | "중년" | "노년";
+export type Age = "청소년" | "청년" | "중년" | "장년";
 
 interface VoiceBody {
   language?: string;

@@ -107,7 +107,7 @@ excuseDocs[`${apiPrefix}/voice`] = {
               language: {
                 type: "string",
                 description:
-                  "음성을 생성할 언어입니다. '한국어', 'English' 둘 중 하나의 값이 가능합니다.",
+                  "음성을 생성할 언어입니다. '한국어', '영어', '일본어' 셋 중 하나의 값이 가능합니다.",
               },
               gender: {
                 type: "string",
@@ -117,7 +117,7 @@ excuseDocs[`${apiPrefix}/voice`] = {
               age: {
                 type: "string",
                 description:
-                  "성우의 연령대로, '청년', '중년', '노년' 둘 중 하나의 값이 가능합니다.",
+                  "성우의 연령대로, '청소년', '청년', '중년', '장년' 넷 중 하나의 값이 가능합니다.",
               },
               text: {
                 type: "string",
