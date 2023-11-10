@@ -24,6 +24,10 @@
     "url": "https://github.com/HACKY-TALKY-2/T3_BE/issues"
   },
   "homepage": "https://github.com/HACKY-TALKY-2/T3_BE#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": "^8.0.0"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
