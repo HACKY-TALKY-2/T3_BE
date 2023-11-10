@@ -15,7 +15,12 @@ export const getReply = async (prompt: string = "Please say hello to me.") => {
     };
     const chatCompletion: OpenAI.Chat.ChatCompletion =
       await openai.chat.completions.create(params);
-    return chatCompletion.choices[0]?.message?.content || null;
+    const resultText = chatCompletion.choices[0]?.message?.content || null;
+    if (resultText !== null) {
+      // 개행 문자 처리.
+      return resultText.replace("\\n", "\n");
+    }
+    return null;
   } catch (err) {
     console.log(err);
     return null;
