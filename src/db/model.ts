@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import * as process from "process";
 
 import "@/config.js";
-import { UserSchema } from "./schema.js";
+import { UserSchema, ExcuseHistorySchema } from "./schema.js";
 
 export const connectDB = () => {
   mongoose
@@ -19,3 +19,7 @@ export const connectDB = () => {
 };
 
 export const UserModel = mongoose.model("user", UserSchema);
+export const ExcuseHistoryModel = mongoose.model(
+  "excuseHistory",
+  ExcuseHistorySchema,
+);

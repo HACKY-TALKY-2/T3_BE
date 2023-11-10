@@ -2,11 +2,11 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 
 import { connectDB } from "./db/model.js";
-import { excuseRouter, testRouter } from "@/routes/index.js";
+import { excuseRouter, docsRouter, testRouter } from "@/routes/index.js";
 
 // TODO: specify port by env
 const app = express();
-const port = 8000;
+const port = parseInt(process.env.PORT || "8000");
 
 // parse body
 app.use(express.json());
@@ -20,6 +20,7 @@ app.get("/hc", (req: Request, res: Response) => {
 
 // router 등록
 app.use("/excuse", excuseRouter);
+app.use("/docs", docsRouter);
 app.use("/test", testRouter);
 
 // 404 handler
