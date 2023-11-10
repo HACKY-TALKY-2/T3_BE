@@ -1,19 +1,26 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 
+import { testRouter } from "@/routes";
+
+// TODO: specify port by env
 const app = express();
 const port = 8000;
 
+// parse body
 app.use(express.json());
+
+// Allow CORS from all origins
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).send("Hello World!");
+app.get("/hc", (req: Request, res: Response) => {
+  res.status(200).send("The server is working alright!");
 });
 
 // router 등록
+app.use("/test", testRouter);
 
-// 404
+// 404 handler
 app.use((req, res) => {
   res.status(404).send("Not Found");
 });
