@@ -1,14 +1,13 @@
 version: "3.8"
 services:
   server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "withsang/t3-excuse:latest" # build from Dockerfile
     ports:
       - "${EXPORT_PORT:?}:80"
     environment:
       - HOST=${HOST:?}
-      - MONGO_URI=mongodb://db:27017/t3
+      - MONGO_CONNECTION_URI=mongodb://db:27017/t3
+      - OPENAI_API_KEY=${OPENAI_API_KEY:?}
     depends_on:
       - db
   db:
