@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 
+import { connectDB } from "./db/model";
 import { testRouter } from "@/routes";
 
 // TODO: specify port by env
@@ -33,6 +34,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   }
   next(err);
 });
+
+// DB 연결
+connectDB();
 
 // 서버 시작
 app.listen(port, () => {
