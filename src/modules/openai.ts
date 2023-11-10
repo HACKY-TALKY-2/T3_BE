@@ -5,10 +5,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY as string,
 });
 
-export const getReply = async (content: string = "Please say hello to me.") => {
+export const getReply = async (prompt: string = "Please say hello to me.") => {
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
-      messages: [{ role: "user", content }],
+      messages: [{ role: "user", content: prompt }],
       model: "gpt-3.5-turbo",
     };
     const chatCompletion: OpenAI.Chat.ChatCompletion =
