@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { excuseHandler } from "@/controllers/excuse";
+import { excuseHandler } from "@/controllers/excuse.js";
 
 const router = Router();
 

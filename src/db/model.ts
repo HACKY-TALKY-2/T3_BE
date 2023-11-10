@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import * as process from "process";
 
-import "@/config";
-import { UserSchema } from "./schema";
+import "@/config.js";
+import { UserSchema } from "./schema.js";
 
 export const connectDB = () => {
   mongoose

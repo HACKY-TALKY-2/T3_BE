@@ -2,7 +2,8 @@
   "name": "t3_be",
   "version": "0.0.1",
   "description": "backend for team 3 service",
-  "main": "dist/index.js",
+  "exports": "./index.js",
+  "type": "module",
   "scripts": {
     "start": "concurrently \"npx tsc -w\" \"tsc-alias -w\" \"nodemon ./dist/index.js\"",
     "test": "echo \"not implemented!\" && exit 1",
@@ -33,7 +34,8 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "openai": "^4.17.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.16",
