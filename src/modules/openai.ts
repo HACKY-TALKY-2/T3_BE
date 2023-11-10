@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { type VoiceActor } from "@/modules/actor.js";
 import "@/config.js";
 
 const openai = new OpenAI({
@@ -20,14 +21,6 @@ export const getReply = async (prompt: string = "Please say hello to me.") => {
     return null;
   }
 };
-
-export type VoiceActor =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
 
 /**
  * OpenAI API를 사용해 텍스트를 음성으로 변환합니다.

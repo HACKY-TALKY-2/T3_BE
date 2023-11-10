@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
+import {
+  getVoiceActor,
+  type Age,
+  type Gender,
+  type Language,
+} from "@/modules/actor.js";
+import { uploadS3 } from "@/modules/aws.js";
 import { getPrompt, PromptBody } from "@/modules/prompt.js";
 import { getReply, getVoiceBuffer } from "@/modules/openai.js";
 import { ExcuseHistoryModel } from "@/db/model.js";
-import { uploadS3 } from "@/modules/aws.js";
 import getRandomHex from "@/utils/randomHex.js";
 
 export const excuseHandler = async (req: Request, res: Response) => {
@@ -39,12 +45,8 @@ export const excuseHandler = async (req: Request, res: Response) => {
   }
 };
 
-export type Language = "한국어" | "영어" | "일본어";
-export type Gender = "남성" | "여성";
-export type Age = "청소년" | "청년" | "중년" | "장년";
-
 interface VoiceBody {
-  language?: string;
+  language?: Language;
   gender: Gender;
   age: Age;
   text: string;
@@ -55,7 +57,7 @@ export const excuseVoiceHandler = async (req: Request, res: Response) => {
     const { language, gender, age, text } = req.body as VoiceBody;
 
     // Whisper API를 사용해 텍스트를 음성으로 변환합니다.
-    const buffer = await getVoiceBuffer(text);
+    const buffer = await getVoiceBuffer(text, getVoiceActor(gender, age));
     if (buffer === null) {
       console.error("Failed to get voice buffer from openai");
       return res.status(500).json({
