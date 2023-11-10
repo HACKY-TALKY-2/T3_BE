@@ -6,7 +6,7 @@ import { excuseRouter, docsRouter, testRouter } from "@/routes/index.js";
 
 // TODO: specify port by env
 const app = express();
-const port = 8000;
+const port = parseInt(process.env.PORT || "8000");
 
 // parse body
 app.use(express.json());
