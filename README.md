@@ -8,7 +8,7 @@ OpenAI GPT-4 Turbo와 Whisper를 사용해, 당신에게 지금 필요한 변명
 
 **연약한 개인 서버(데스크톱과 Cloudflare tunnel..)에 배포되어 있습니다! 착하게 다뤄주세요!**
 
-- [API 서버 - https://excuse.withsang.com/](https://excuse.withsang.com/)
+- [API 서버 - https://excuse.withsang.com/](https://excuse.withsang.com/hc)
 - [API 문서 - https://excuse.withsang.com/docs](https://excuse.withsang.com/docs)
 
 ## Functions
