@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import { getReply } from "@/utils/chatgpt.js";
 
+interface Body {
+  text: string;
+}
+
 export const excuseHandler = async (req: Request, res: Response) => {
   try {
-    const reply = await getReply();
+    const body: Body = req.body;
+    const reply = await getReply(body.text);
     if (reply === null) {
       console.error("Failed to get reply from chatgpt");
       return res.status(500).json({
