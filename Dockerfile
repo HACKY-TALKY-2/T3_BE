@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-# Install curl(for taxi-watchtower) and pnpm
+# Install curl(for debugging purpose) and pnpm
 RUN apk update && apk add curl && npm install --global pnpm@8.8.0
 
 # pnpm fetch does require only lockfile
